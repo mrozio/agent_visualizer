@@ -33,25 +33,52 @@ For more details, see the [Google ADK documentation](https://google.github.io/ad
 npm install
 ```
 
-## Multi-Agent System
+## Multi-Agent System with Orchestrator
 
-This project includes **both Python and TypeScript agents** that can work together:
+This project demonstrates a complete **multi-language agent system** with intelligent orchestration:
 
-- **Python Data Agent**: Statistical analysis, data transformation, insights
-- **TypeScript Chart Agent**: Visualization creation, multiple chart types
+### Architecture
 
 ```
-┌─────────────────┐      ┌──────────────────┐
-│  Data Agent     │─────▶│   Chart Agent    │
-│  (Python)       │      │   (TypeScript)   │
-│                 │      │                  │
-│ • Statistics    │      │ • Line Charts    │
-│ • Insights      │      │ • Bar Charts     │
-│ • Transform     │      │ • Pie Charts     │
-└─────────────────┘      └──────────────────┘
+       ┌─────────────────────────────────┐
+       │   Agent Orchestrator            │
+       │   (Coordinates all agents)      │
+       └──────────────┬──────────────────┘
+                      │
+       ┌──────────────┼──────────────┐
+       │              │              │
+┌──────▼─────┐  ┌────▼─────┐  ┌─────▼──────┐
+│Data Agent  │  │Chart Agent│  │ NLP Agent  │
+│ (Python)   │  │(TypeScript│  │  (Python)  │
+│            │  │           │  │            │
+│• Stats     │  │• Line     │  │• Sentiment │
+│• Insights  │  │• Bar      │  │• Summary   │
+│• Transform │  │• Pie      │  │• NER       │
+└────────────┘  └───────────┘  └────────────┘
 ```
 
-See [MULTI_AGENT_GUIDE.md](./MULTI_AGENT_GUIDE.md) for complete documentation on building mixed-language agent systems.
+### Key Components
+
+1. **Agent Orchestrator** - Coordinates multiple agents
+   - Task delegation and routing
+   - Sequential and parallel workflows
+   - Dynamic agent discovery
+   - Error handling and fallbacks
+
+2. **Specialized Agents**
+   - **Python Data Agent**: Statistical analysis, data transformation
+   - **TypeScript Chart Agent**: Visualization creation
+   - **Python NLP Agent**: Text analysis (can be added)
+   - **Go Export Agent**: Report generation (can be added)
+
+### Orchestration Patterns
+
+- **Sequential**: Data → Analysis → Visualization → Export
+- **Parallel**: Generate multiple charts simultaneously
+- **Conditional**: Route based on request type
+- **Hybrid**: Mix sequential and parallel for complex workflows
+
+See [MULTI_AGENT_GUIDE.md](./MULTI_AGENT_GUIDE.md) and [ORCHESTRATION_GUIDE.md](./ORCHESTRATION_GUIDE.md) for complete documentation.
 
 ## Quick Start
 
@@ -302,7 +329,7 @@ This will:
 Run the multi-agent orchestration example:
 
 ```bash
-npx tsx examples/multi-agent-orchestration.ts
+npm run example:multi-agent
 ```
 
 This demonstrates:
@@ -310,6 +337,23 @@ This demonstrates:
 - Multiple communication patterns
 - Shared state management
 - Real-world use cases
+
+### Orchestrator Examples
+
+Run the orchestrator coordination examples:
+
+```bash
+npm run example:orchestrator
+```
+
+This demonstrates:
+- Task delegation and routing
+- Sequential workflows
+- Parallel execution
+- Conditional routing
+- Complex business workflows
+- Dynamic agent registration
+- Error handling and fallbacks
 
 ## Development
 
@@ -337,20 +381,24 @@ npm run dev
 agent_visualizer/
 ├── src/
 │   ├── agent/
-│   │   └── chartAgent.ts           # TypeScript Chart Agent
+│   │   └── chartAgent.ts               # TypeScript Chart Agent
+│   ├── orchestrator/
+│   │   └── agentOrchestrator.ts        # Multi-agent orchestrator
 │   ├── tools/
-│   │   ├── chartingTools.ts        # Core charting utilities
-│   │   └── chartTemplates.ts       # Pre-built templates
-│   └── index.ts                    # Main entry point
+│   │   ├── chartingTools.ts            # Core charting utilities
+│   │   └── chartTemplates.ts           # Pre-built templates
+│   └── index.ts                        # Main entry point
 ├── python_agent/
-│   ├── data_agent.py               # Python Data Agent
-│   ├── requirements.txt            # Python dependencies
+│   ├── data_agent.py                   # Python Data Agent
+│   ├── requirements.txt                # Python dependencies
 │   └── __init__.py
 ├── examples/
-│   ├── chart-example.ts            # Chart examples
-│   └── multi-agent-orchestration.ts # Multi-agent examples
-├── output/                          # Generated charts
-├── MULTI_AGENT_GUIDE.md            # Multi-agent documentation
+│   ├── chart-example.ts                # Chart examples
+│   ├── multi-agent-orchestration.ts    # Multi-agent patterns
+│   └── orchestrator-examples.ts        # Orchestrator examples
+├── output/                              # Generated charts
+├── MULTI_AGENT_GUIDE.md                # Multi-agent documentation
+├── ORCHESTRATION_GUIDE.md              # Orchestration patterns
 ├── package.json
 └── README.md
 ```
