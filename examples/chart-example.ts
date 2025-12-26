@@ -124,26 +124,44 @@ async function templateExample() {
 }
 
 /**
- * Example 3: Using the Chart Agent
+ * Example 3: Using the Google Gemini Chart Agent
  */
 async function agentExample() {
-  console.log('Example 3: Chart Agent Usage');
-  console.log('=============================\n');
+  console.log('Example 3: Google Gemini Chart Agent Usage');
+  console.log('============================================\n');
+
+  console.log('NOTE: To use the agent with Google Gemini, you need:');
+  console.log('1. A Google Cloud project with Vertex AI API enabled');
+  console.log('2. Authentication set up (gcloud auth or service account)');
+  console.log('3. Or use GOOGLE_API_KEY environment variable for Gemini API\n');
 
   const agent = new ChartAgent();
 
-  console.log('Chart Agent initialized!');
-  console.log(
-    'The agent can process natural language requests to create charts.\n'
-  );
-  console.log('Example agent capabilities:');
+  console.log('Chart Agent initialized with Google ADK!');
+  console.log('Model: gemini-2.0-flash-exp\n');
+
+  console.log('The agent provides these function tools:');
   console.log('- create_line_chart: For trends and time series');
   console.log('- create_bar_chart: For comparisons');
   console.log('- create_pie_chart: For distributions');
   console.log('- create_scatter_plot: For correlations');
   console.log('- create_chart_from_template: Using predefined templates\n');
 
-  console.log('You can integrate this agent with Google Chat or other platforms!');
+  console.log('Example usage:');
+  console.log('const response = await agent.processMessage(');
+  console.log('  "Create a line chart showing sales data: Jan=100, Feb=120, Mar=115"');
+  console.log(');\n');
+
+  console.log('For streaming responses:');
+  console.log('for await (const chunk of agent.processMessageStream(message)) {');
+  console.log('  console.log(chunk);');
+  console.log('}\n');
+
+  console.log('Integration options:');
+  console.log('- Google Chat: Use Google Chat API webhooks');
+  console.log('- Slack: Use Slack Bolt framework');
+  console.log('- Discord: Use Discord.js');
+  console.log('- Web API: Build REST or WebSocket endpoints\n');
 }
 
 /**
@@ -198,20 +216,61 @@ async function customChartExample() {
 }
 
 /**
+ * Example 5: Google Chat Integration Pattern
+ */
+async function googleChatIntegrationExample() {
+  console.log('Example 5: Google Chat Integration Pattern');
+  console.log('===========================================\n');
+
+  console.log('To integrate with Google Chat:\n');
+
+  console.log('1. Set up a Google Chat app in Google Cloud Console');
+  console.log('2. Configure webhook or Pub/Sub for receiving messages');
+  console.log('3. Use the following pattern:\n');
+
+  console.log('```typescript');
+  console.log("import { ChartAgent } from './src/agent/chartAgent.js';");
+  console.log('');
+  console.log('const agent = new ChartAgent();');
+  console.log('');
+  console.log('// Handle Google Chat message');
+  console.log('async function handleChatMessage(event) {');
+  console.log('  const userMessage = event.message.text;');
+  console.log('  ');
+  console.log('  // Process with Gemini agent');
+  console.log('  const response = await agent.processMessage(userMessage);');
+  console.log('  ');
+  console.log('  // Send response back to Google Chat');
+  console.log('  return { text: response };');
+  console.log('}');
+  console.log('```\n');
+
+  console.log('4. Deploy to Cloud Functions or Cloud Run');
+  console.log('5. Charts will be created and saved locally or to Cloud Storage');
+  console.log('6. Share chart URLs back in the chat\n');
+}
+
+/**
  * Run all examples
  */
 async function main() {
-  console.log('Chart Agent Examples');
-  console.log('====================\n');
+  console.log('Google ADK Chart Agent Examples');
+  console.log('================================\n');
+  console.log('Powered by Google Gemini & Agent Development Kit\n');
 
   try {
     await directChartingExample();
     await templateExample();
     await agentExample();
     await customChartExample();
+    await googleChatIntegrationExample();
 
     console.log('\n✓ All examples completed successfully!');
     console.log('Check the ./output directory for generated charts.');
+    console.log('\nNext steps:');
+    console.log('- Set up Google Cloud authentication to use the agent');
+    console.log('- Integrate with Google Chat, Slack, or other platforms');
+    console.log('- Customize chart templates for your use cases');
   } catch (error) {
     console.error('Error running examples:', error);
   }
