@@ -2,7 +2,7 @@
 
 A **Google Gemini Agent** built with the **Agent Development Kit (ADK)** that can create charts and graphs from data in chat conversations.
 
-Powered by **Google's ADK** and **Gemini 2.0**, this agent provides charting capabilities through natural language interactions.
+Powered by **Google's ADK** and **Gemini 3 Flash**, this agent provides charting capabilities through natural language interactions.
 
 ## Features
 
@@ -183,9 +183,11 @@ The agent provides 5 function tools:
 
 ### Model
 
-- Uses **Gemini 2.0 Flash Experimental** model
+- Uses **Gemini 3 Flash** - Google's latest frontier model (Dec 2025)
+- 3x faster than Gemini 2.5 Pro with superior performance
 - Supports streaming responses
 - Full function calling capabilities
+- PhD-level reasoning and coding abilities
 
 ### Example Agent Usage
 
@@ -355,8 +357,8 @@ await tools.generateChartToFile(config, './output/custom.png');
 
 ## Technology Stack
 
-- **@google/adk**: Google's Agent Development Kit
-- **Gemini 2.0**: Google's latest AI model
+- **@google/adk**: Google's Agent Development Kit (TypeScript v0.2.0)
+- **Gemini 3 Flash**: Google's latest frontier AI model (December 2025)
 - **chart.js**: Chart rendering library
 - **chartjs-node-canvas**: Server-side chart rendering
 - **canvas**: HTML5 Canvas implementation

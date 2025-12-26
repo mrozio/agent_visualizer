@@ -189,7 +189,7 @@ export class ChartAgent {
     const agent = new LlmAgent({
       name: 'chart_agent',
       description: 'An agent that creates charts and graphs from data',
-      model: 'gemini-2.0-flash-exp',
+      model: 'gemini-3-flash',
       instruction: `You are a helpful chart creation assistant. You can create various types of charts and graphs from data provided by users.
 
 Available chart types:

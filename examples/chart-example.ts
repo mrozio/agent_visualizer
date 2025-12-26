@@ -138,7 +138,7 @@ async function agentExample() {
   const agent = new ChartAgent();
 
   console.log('Chart Agent initialized with Google ADK!');
-  console.log('Model: gemini-2.0-flash-exp\n');
+  console.log('Model: gemini-3-flash (Dec 2025 - frontier intelligence)\n');
 
   console.log('The agent provides these function tools:');
   console.log('- create_line_chart: For trends and time series');
