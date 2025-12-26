@@ -1,0 +1,3 @@
+# Python Agent Dependencies
+adk-python>=0.1.0
+google-cloud-aiplatform>=1.70.0

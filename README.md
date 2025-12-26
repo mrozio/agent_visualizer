@@ -7,6 +7,7 @@ Powered by **Google's ADK** and **Gemini 3 Flash**, this agent provides charting
 ## Features
 
 - 🤖 **Google ADK Integration**: Built with Google's Agent Development Kit for robust agent orchestration
+- 🔄 **Multi-Agent System**: Mix Python and TypeScript agents for complete data workflows
 - 🎨 **Multiple Chart Types**: Line charts, bar charts, pie charts, scatter plots, radar charts, and more
 - 📊 **Chart Templates**: Pre-built templates for common use cases (time series, comparisons, distributions, etc.)
 - 💬 **Conversational Interface**: Natural language chart creation using Gemini models
@@ -31,6 +32,26 @@ For more details, see the [Google ADK documentation](https://google.github.io/ad
 ```bash
 npm install
 ```
+
+## Multi-Agent System
+
+This project includes **both Python and TypeScript agents** that can work together:
+
+- **Python Data Agent**: Statistical analysis, data transformation, insights
+- **TypeScript Chart Agent**: Visualization creation, multiple chart types
+
+```
+┌─────────────────┐      ┌──────────────────┐
+│  Data Agent     │─────▶│   Chart Agent    │
+│  (Python)       │      │   (TypeScript)   │
+│                 │      │                  │
+│ • Statistics    │      │ • Line Charts    │
+│ • Insights      │      │ • Bar Charts     │
+│ • Transform     │      │ • Pie Charts     │
+└─────────────────┘      └──────────────────┘
+```
+
+See [MULTI_AGENT_GUIDE.md](./MULTI_AGENT_GUIDE.md) for complete documentation on building mixed-language agent systems.
 
 ## Quick Start
 
@@ -262,7 +283,9 @@ export GOOGLE_API_KEY="your-api-key"
 
 ## Examples
 
-Run the comprehensive example file:
+### Chart Examples
+
+Run the comprehensive chart example:
 
 ```bash
 npm run example
@@ -273,6 +296,20 @@ This will:
 - Demonstrate template usage
 - Show agent integration patterns
 - Generate sample charts in `./output/`
+
+### Multi-Agent Examples
+
+Run the multi-agent orchestration example:
+
+```bash
+npx tsx examples/multi-agent-orchestration.ts
+```
+
+This demonstrates:
+- Python + TypeScript agent collaboration
+- Multiple communication patterns
+- Shared state management
+- Real-world use cases
 
 ## Development
 
@@ -300,16 +337,21 @@ npm run dev
 agent_visualizer/
 ├── src/
 │   ├── agent/
-│   │   └── chartAgent.ts      # Google ADK agent implementation
+│   │   └── chartAgent.ts           # TypeScript Chart Agent
 │   ├── tools/
-│   │   ├── chartingTools.ts   # Core charting utilities
-│   │   └── chartTemplates.ts  # Pre-built templates
-│   └── index.ts               # Main entry point
+│   │   ├── chartingTools.ts        # Core charting utilities
+│   │   └── chartTemplates.ts       # Pre-built templates
+│   └── index.ts                    # Main entry point
+├── python_agent/
+│   ├── data_agent.py               # Python Data Agent
+│   ├── requirements.txt            # Python dependencies
+│   └── __init__.py
 ├── examples/
-│   └── chart-example.ts       # Usage examples
-├── output/                     # Generated charts (created on first run)
+│   ├── chart-example.ts            # Chart examples
+│   └── multi-agent-orchestration.ts # Multi-agent examples
+├── output/                          # Generated charts
+├── MULTI_AGENT_GUIDE.md            # Multi-agent documentation
 ├── package.json
-├── tsconfig.json
 └── README.md
 ```
 
